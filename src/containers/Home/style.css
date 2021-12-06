@@ -1,0 +1,49 @@
+.ant-layout {
+  background-color: black !important;
+}
+
+.ant-layout h2 {
+  color: white;
+}
+
+.ant-layout .ant-layout-header {
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  gap: 3rem;
+}
+
+.ant-layout .ant-layout-header .user {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0;
+  color: white;
+}
+
+.ant-layout .ant-layout-content {
+  padding: 2rem;
+}
+
+.ant-layout .ant-layout-content .ant-tabs-nav::before {
+  border-bottom: none;
+}
+
+.ant-layout .ant-layout-content .ant-tabs-tab {
+  color: white;
+}
+
+.ant-layout .tokenValuesContainer h2 {
+  color: white;
+}
+/*# sourceMappingURL=style.css.map */
