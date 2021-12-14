@@ -48,6 +48,16 @@ function Home(props: object) {
   useEffect(() => {
     enableWeb3();
   }, []);
+  console.log(portfolioTrackerTransactions, tokenBalances);
+  async function getTokenPrice(token: any) {
+    const options = {
+      address: token.address,
+      chain: token.chain,
+    };
+    const price = await Moralis.Web3API.token.getTokenPrice(options);
+    console.log(price, "price");
+    debugger;
+  }
   async function gettokens(add: string) {
     //get all balances of tokens
     NETWORK_CHAINS.map((chain: any) => {
@@ -66,27 +76,30 @@ function Home(props: object) {
           // debugger;
 
           res.forEach((item: any) => {
-            console.log(item);
+            // console.log(item);
             item["chain"] = chain;
             temp.push(item);
+          });
+          temp.forEach((token: any) => {
+            getTokenPrice(token);
           });
           setTokenBalances(temp);
         });
 
       // //get token transfers
-      // Moralis.Web3API.account
-      //   .getTokenTransfers({
-      //     chain: chain,
-      //     address: add,
-      //   })
-      //   .then((value: any) => {
-      //     let temp = portfolioTrackerTransactions;
-      //     value.result.forEach((item: any) => {
-      //       temp.push(item);
-      //     });
-      //     setPortfolioTrackerTransactions(temp);
-      //   })
-      //   .catch((err) => console.log(err));
+      Moralis.Web3API.account
+        .getTokenTransfers({
+          chain: chain,
+          address: add,
+        })
+        .then((value: any) => {
+          let temp = portfolioTrackerTransactions;
+          value.result.forEach((item: any) => {
+            temp.push(item);
+          });
+          setPortfolioTrackerTransactions(temp);
+        })
+        .catch((err) => console.log(err));
 
       // //get all transfers
       // Moralis.Web3API.account
@@ -124,7 +137,7 @@ function Home(props: object) {
   // const getDataForAllUserAccounts = (accounts : <string>[]) => {
 
   // }
-  console.log(isAuthenticated, "isAuthenticated");
+  // console.log(isAuthenticated, "isAuthenticated");
   return (
     <div className="HomeContainer">
       <Layout hasSider={false}>
